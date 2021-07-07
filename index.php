@@ -1,5 +1,5 @@
 <?php
-
+$dbh = new PDO('mysql:host=localhost;dbname=php-todos', 'root', 'root');
 // ================================================================
 // Front controller
 // ----------------------------------------------------------------
@@ -9,6 +9,10 @@
 
 // Active le chargement automatique des classes grâce à Composer
 require 'vendor/autoload.php';
+
+use App\View\StandardView;
+use App\View\AbstractView;
+
 
 // Crée un nouveau routeur
 $router = new AltoRouter();
@@ -22,14 +26,20 @@ $router = new AltoRouter();
 // ================================================================
 
 // Page d'accueil
-$router->map('GET', '/', function() {
-    require __DIR__ . '/pages/home.php';
-});
+// $router->map('GET', '/', function() {
+//     require __DIR__ . '/pages/home.php';
+// });
 
-// Page des tâches à faire
-$router->map('GET', '/todos', function() {
-    require __DIR__ . '/pages/todo.php';
-});
+// // Page des tâches à faire
+// $router->map('GET', '/todos', function() {
+//     require __DIR__ . '/pages/todo.php';
+// });
+$router->map('GET', '/', 'MainController#home');
+$router->map('GET', '/todos', 'TodoController#list');
+$router->map('POST', '/todos/[i:id]/new', 'TodoController#create');
+$router->map('POST', '/todos/[i:id]/update', 'TodoController#update');
+$router->map('POST', '/todos/[i:id]/delete', 'TodoController#delete');
+
 
 
 // ================================================================
@@ -60,3 +70,4 @@ if( is_array($match)) {
 	// Renvoie la page 404 du serveur
 	header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 }
+

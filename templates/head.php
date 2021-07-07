@@ -11,11 +11,3 @@
     <!-- Fontawesome CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Ma liste de tâches</h1>
-        <p>Cette application vous permet de gérer votre liste de tâches à faire!</p>
-        <a href="/todos" class="btn btn-primary">Commencer</a>
-    </div>
-</body>
-</html>
